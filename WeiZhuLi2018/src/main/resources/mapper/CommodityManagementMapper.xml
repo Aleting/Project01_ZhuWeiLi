@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.qut.dao.CommodityManagementMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.qut.entity.CommodityManagement">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="sort_name" jdbcType="VARCHAR" property="sortName" />
+    <result column="attribute_price" jdbcType="VARCHAR" property="attributePrice" />
+    <result column="attribute_price_vip" jdbcType="VARCHAR" property="attributePriceVip" />
+    <result column="attribute_price0" jdbcType="VARCHAR" property="attributePrice0" />
+    <result column="goods_img1" jdbcType="VARCHAR" property="goodsImg1" />
+    <result column="goods_img2" jdbcType="VARCHAR" property="goodsImg2" />
+    <result column="goods_img3" jdbcType="VARCHAR" property="goodsImg3" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="goods_state" jdbcType="VARCHAR" property="goodsState" />
+    <result column="goods_content" jdbcType="VARCHAR" property="goodsContent" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+   <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="attribute_repertory" jdbcType="INTEGER" property="attributeRepertory"/>
+    <result column="switch_start_time" jdbcType="TIMESTAMP" property="startTime"/>
+    <result column="attribute_size" jdbcType="VARCHAR" property="attributeSize"/>
+      <result column="attribute_id" jdbcType="INTEGER" property="attributeId"/>
+    <result column="attribute_memo" jdbcType="VARCHAR" property="attributeMemo"/>
+      <result column="virtual_id" jdbcType="VARCHAR" property="virtualId"/>
+  </resultMap>
+  <select id="findAllPage" parameterType="cn.edu.qut.entity.CommodityManagement" resultType="CommodityManagement">
+  select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier,attribute where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and attribute.goods_id=goods.goods_id and goods.store_id=#{storeId} limit #{page},5;
+  </select>
+
+  <select id="count" resultType="int" parameterType="cn.edu.qut.entity.CommodityManagement">
+      select count(*) from goods where store_id=#{storeId};
+ </select>
+
+  <select id="selectGoodsId" parameterType="cn.edu.qut.entity.CommodityManagement" resultType="CommodityManagement">
+select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and goods.goods_id=#{GoodsId} and goods.store_id=#{storeId};
+  </select>
+
+  <select id="selectGoodsName" parameterType="cn.edu.qut.entity.CommodityManagement" resultType="CommodityManagement">
+select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier,attribute where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and attribute.goods_id=goods.goods_id and goods.goods_name like concat("%",concat(#{goodsName},"%")) and goods.store_id=#{storeId};
+  </select>
+
+  <select id="query1" resultType="CommodityManagement" parameterType="cn.edu.qut.entity.CommodityManagement">
+  select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier,attribute where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and attribute.goods_id=goods.goods_id and goods.store_id=#{storeId};
+    </select>
+  <select id="selectSortId" parameterType="cn.edu.qut.entity.CommodityManagement" resultType="CommodityManagement">
+  select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier,attribute where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and attribute.goods_id=goods.goods_id and goods.sort_id=#{sortId} and goods.store_id=#{storeId} limit #{page},5;
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="cn.edu.qut.entity.CommodityManagement" resultType="CommodityManagement">
+select * ,DATE_FORMAT(goods.start_time,'%Y-%m-%d %H:%i:%S') switch_start_time from goods,sort,supplier,attribute where goods.sort_id=sort.sort_id and goods.supplier_id=supplier.supplier_id and goods.goods_id=attribute.goods_id and goods.goods_id=#{GoodsId};
+  </select>
+</mapper>

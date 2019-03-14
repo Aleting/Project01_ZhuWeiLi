@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--配置数据库连接-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/we002?useUnicode=true&amp;characterEncoding=UTF-8&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"
+                        userId="root"
+                        password="wyj980206">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--指定Java Bean生成的位置-->
+        <javaModelGenerator targetPackage="cn.edu.qut.entity" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--指定sql文件映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--指定dao接口生成的位置 mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.edu.qut.dao"  targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- table每个表的生成策略-->
+        <!--<table tableName="t_bought" domainObjectName="T_bought"></table>-->
+        <!--<table tableName="type" domainObjectName="Type"></table>-->
+        <!--<table tableName="address" domainObjectName="Address"></table>-->
+        <!--<table tableName="attribute" domainObjectName="Attribute"></table>-->
+
+
+        <!--<table tableName="clerk_permission" domainObjectName="Clerk_permission"></table>-->
+        <!--<table tableName="customer" domainObjectName="Customer"></table>-->
+        <!--<table tableName="goods" domainObjectName="Goods"></table>-->
+        <!--<table tableName="stock" domainObjectName="Stock"></table>-->
+        <!--<table tableName="grade" domainObjectName="Grade"></table>-->
+        <!--<table tableName="order_goods" domainObjectName="Order_goods"></table>-->
+        <!--<table tableName="orders" domainObjectName="Orde"></table>-->
+        <!--<table tableName="permission" domainObjectName="Permission"></table>-->
+        <!--<table tableName="role" domainObjectName="Role"></table>-->
+        <!--<table tableName="role_permission" domainObjectName="Role_permission"></table>-->
+        <!--<table tableName="seller" domainObjectName="Seller"></table>-->
+        <!--<table tableName="sort" domainObjectName="Sort"></table>-->
+        <table tableName="tbought" domainObjectName="tbought2"></table>
+        <!--<table tableName="supplier" domainObjectName="Supplier"></table>-->
+
+    </context>
+
+
+</generatorConfiguration>
